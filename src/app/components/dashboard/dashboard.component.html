@@ -1,0 +1,46 @@
+<div class="max-w-4xl mx-auto p-4">
+<!-- Input Form -->
+<form (submit)="addCity()" class="flex gap-4 items-center mb-6">
+  <input
+    [(ngModel)]="cityName"
+    name="cityName"
+    placeholder="Enter city"
+    class="flex-grow p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+    required
+  />
+  <button
+    type="submit"
+    class="bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition"
+  >
+    Add City
+  </button>
+</form>
+
+<!-- Error Message -->
+<div *ngIf="errorMessage" class="text-red-600 mb-4">
+  {{ errorMessage }}
+</div>
+
+<!-- Loading Indicator -->
+<div *ngIf="loading" class="text-blue-500 mb-4">
+  Loading...
+</div>
+
+<!-- City Weather Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  <div
+    *ngFor="let city of cities"
+    class="bg-white shadow-lg rounded-md p-4 border hover:shadow-xl transition"
+  >
+    <h2 class="text-lg font-semibold text-gray-800">{{ city.name }}</h2>
+    <p class="text-gray-600">Temperature: <span class="font-medium">{{ city.temp }} °C</span></p>
+    <p class="text-gray-600 capitalize">Condition: <span class="font-medium">{{ city.condition }}</span></p>
+    <button
+      (click)="removeCity(city.name)"
+      class="mt-4 bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition"
+    >
+      Remove
+    </button>
+  </div>
+</div>
+</div>
