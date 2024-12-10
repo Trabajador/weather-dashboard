@@ -13,7 +13,7 @@ A simple Angular-based weather dashboard that displays detailed weather informat
 - Optionally persists the list of cities in local storage.
 
 ## Screenshots
-![Weather Dashboard Screenshot](path_to_screenshot.jpg)
+![Weather Dashboard Screenshot](/src/assets/screenshot.png)
 
 ## Setup Instructions
 
