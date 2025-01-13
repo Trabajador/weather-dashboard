@@ -23,15 +23,16 @@ export class DashboardComponent {
   }
 
   addCity(): void {
-    if (this.cities.some(city => city.name.toLowerCase() === this.cityName.toLowerCase())) {
-      this.errorMessage = 'This city is already in your list';
-      this.cityName = '';
-      return;
-    }
-
     this.loading = true;
     this.weatherService.getWeather(this.cityName).subscribe(
       (data) => {
+        if (this.cities.some(city => city.name === data.name)) {
+          this.errorMessage = 'This city is already in your list';
+          this.cityName = '';
+          this.loading = false;
+          return;
+        }
+
         const cityData = {
           name: data.name,
           temp: data.main.temp,
@@ -43,6 +44,7 @@ export class DashboardComponent {
         this.loading = false;
         this.errorMessage = '';
       },
+
       (error) => {
         this.errorMessage = 'City not found';
         this.loading = false;
