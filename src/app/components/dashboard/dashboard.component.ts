@@ -23,7 +23,24 @@ export class DashboardComponent {
   }
 
   addCity(): void {
+    if (!this.cityName.trim()) {
+      this.errorMessage = 'Please enter a city name';
+      return;
+    }
+
+    const cityExists = this.cities.some(
+      city => city.name.toLowerCase() === this.cityName.toLowerCase()
+    );
+
+    if (cityExists) {
+      this.errorMessage = 'This city is already in your list';
+      this.cityName = '';
+      return;
+    }
+
     this.loading = true;
+    this.errorMessage = '';
+
     this.weatherService.getWeather(this.cityName).subscribe(
       (data) => {
         const cityData = {
