@@ -3,8 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  WEATHER_API_KEY: 'f923b3ada6d5fc0ca2f184de0429deea',  // Your API key for development
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file

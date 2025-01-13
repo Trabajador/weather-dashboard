@@ -18,14 +18,18 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-builders/custom-webpack:browser",
           "options": {
             "outputPath": "dist/weather-dashboard",
+            "baseHref": "/weather-dashboard/",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
+            "customWebpackConfig": {
+              "path": "/extra-webpack.config.js"
+            },
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -40,8 +44,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "5Mb",
+                  "maximumError": "5Mb"
                 },
                 {
                   "type": "anyComponentStyle",
