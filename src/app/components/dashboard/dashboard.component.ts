@@ -23,24 +23,13 @@ export class DashboardComponent {
   }
 
   addCity(): void {
-    if (!this.cityName.trim()) {
-      this.errorMessage = 'Please enter a city name';
-      return;
-    }
-
-    const cityExists = this.cities.some(
-      city => city.name.toLowerCase() === this.cityName.toLowerCase()
-    );
-
-    if (cityExists) {
+    if (this.cities.some(city => city.name.toLowerCase() === this.cityName.toLowerCase())) {
       this.errorMessage = 'This city is already in your list';
       this.cityName = '';
       return;
     }
 
     this.loading = true;
-    this.errorMessage = '';
-
     this.weatherService.getWeather(this.cityName).subscribe(
       (data) => {
         const cityData = {
@@ -52,6 +41,7 @@ export class DashboardComponent {
         localStorage.setItem('cities', JSON.stringify(this.cities));
         this.cityName = '';
         this.loading = false;
+        this.errorMessage = '';
       },
       (error) => {
         this.errorMessage = 'City not found';
