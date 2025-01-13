@@ -32,7 +32,7 @@ export class DashboardComponent {
           condition: data.weather[0].description,
         };
         this.cities.push(cityData);
-        localStorage.setItem('cities', JSON.stringify(this.cities)); // Save to localStorage
+        localStorage.setItem('cities', JSON.stringify(this.cities));
         this.cityName = '';
         this.loading = false;
       },
@@ -45,5 +45,6 @@ export class DashboardComponent {
 
   removeCity(cityName: string): void {
     this.cities = this.cities.filter((city) => city.name !== cityName);
+    localStorage.setItem('cities', JSON.stringify(this.cities));
   }
 }
